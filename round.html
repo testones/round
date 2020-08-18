@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="mycanvas" width="300" height="150" style="border:1px solid #d3d3d3;">
+		您的浏览器不支持 HTML5 canvas 标签。
+	</canvas>
+	<script>
+	function arc(num) {
+		// console.log(window.devicePixelRatio)
+		var end = 180 + 180/100 *num
+		var c = document.getElementById('mycanvas');
+		var ctx = c.getContext('2d');
+		var width = c.width,height=c.height;
+		if (window.devicePixelRatio) {
+		   c.style.width = width + "px";
+		   c.style.height = height + "px";
+		   c.height = height * window.devicePixelRatio;
+		   c.width = width * window.devicePixelRatio;
+		   ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+		}
+		ctx.beginPath();
+		ctx.strokeStyle="#FF0000";
+		ctx.lineWidth = "2"
+		ctx.lineCap="round";
+		ctx.arc(100, 75, 50, Math.PI,(Math.PI/180)*end,false);
+		ctx.stroke();
+	}
+	var i = 0,
+	inerval = setInterval(()=>{
+		i++
+		arc(i)
+		if(i >= 100){
+			clearInterval(inerval)
+		}
+	},10)	
+
+	</script>
+</body>
+</html>
